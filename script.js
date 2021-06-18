@@ -9,20 +9,24 @@ const tarea = document.querySelector(".tarea");
 var firstTaskToggle = true;
 
 //# appending New Tasks 
+input.addEventListener(
+    "click",()=>{
+    if(firstTaskToggle){
+        todoList.innerHTML=" ";
+        firstTaskToggle = !firstTaskToggle;
+    }    
+})
 addBtn.addEventListener('click',function(){
     
     if(input.value === ""){
         alert("Enter some task");
     }
     else{
-        if(firstTaskToggle){
-            todoList.removeChild(document.querySelector(".todo-list li"));
-            firstTaskToggle = !firstTaskToggle;
-        }    
         todoList.innerHTML += `<li>${input.value}</li>`;
         input.value ="";
     }
 });
+
 //# Clearing all the tasks
 emptyBtn.addEventListener('click',function(){
     let resp = confirm("Are you sure you want to clear all");
@@ -31,6 +35,7 @@ emptyBtn.addEventListener('click',function(){
         input.value ="";
         tarea.style.display ="none";
         saveFileBtn.style.display ="none";
+        firstTaskToggle = !firstTaskToggle;
     }
 });
 //# remove the tasks which are completed
